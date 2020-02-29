@@ -24,9 +24,12 @@ namespace Notifier
 
         [FunctionName("UpdateCountry")]
         public static async Task UpdateCountry([ActivityTrigger] IDurableActivityContext context, ILogger log) {
-            var country = context.GetInput<Country>();
+            var countries = context.GetInput<IEnumerable<Country>>();
             var repository = new Repository();
-            await repository.UpdateAsync(country);
+            foreach (var countryItem in countries)
+            {
+                await repository.UpdateAsync(countryItem);
+            }
         }
 
         [FunctionName("CreateCountry")]

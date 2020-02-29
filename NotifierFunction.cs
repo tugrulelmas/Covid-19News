@@ -39,27 +39,22 @@ namespace Notifier
                     continue;
                 }
 
-                var needUpdate = false;
                 var country = countriesSet[countryItem.Name];
 
                 if (countryItem.NewCases > country.NewCases) {
                     var caseCount = countryItem.NewCases - country.NewCases;
                     var s = caseCount > 1 ? "s" : string.Empty;
                     messages.AppendLine($"{caseCount} new case{s} in {countryItem.Name}");
-                    needUpdate = true;
                 }
 
                 if (countryItem.NewDeaths > country.NewDeaths) {
                     var deathCount = countryItem.NewDeaths - country.NewDeaths;
                     var s = deathCount > 1 ? "s" : string.Empty;
-                    messages.AppendLine($"{deathCount } new death{s} in {countryItem.Name}");
-                    needUpdate = true;
-                }
-
-                if (needUpdate) {
-                    await context.CallActivityAsync("UpdateCountry", countryItem);
+                    messages.AppendLine($"{deathCount} new death{s} in {countryItem.Name}");
                 }
             }
+            
+            await context.CallActivityAsync("UpdateCountry", parsedCountries);
 
             var messageText = messages.ToString();
             if(!string.IsNullOrEmpty(messageText)){

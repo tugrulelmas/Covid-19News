@@ -11,6 +11,8 @@ namespace Notifier
 
         public int NewCases { get; set; }
 
+        public int ActiveCases { get; set; }
+
         public int TotalDeaths { get; set; }
 
         public int NewDeaths { get; set; }

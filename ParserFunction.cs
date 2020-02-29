@@ -37,8 +37,9 @@ namespace Notifier
                     NewCases = GetIntValue(cells[2]),
                     TotalDeaths = GetIntValue(cells[3]),
                     NewDeaths = GetIntValue(cells[4]),
-                    TotalRecovered = GetIntValue(cells[5]),
-                    Serious = GetIntValue(cells[6])
+                    ActiveCases = GetIntValue(cells[5]),
+                    TotalRecovered = GetIntValue(cells[6]),
+                    Serious = GetIntValue(cells[7])
                 };
                 countries.Add(country);
             }

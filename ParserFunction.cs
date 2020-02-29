@@ -27,7 +27,7 @@ namespace Notifier
             
             var htmlDoc = new HtmlDocument();
             htmlDoc.LoadHtml(html);
-            var table = htmlDoc.DocumentNode.SelectSingleNode("//*[@id='table3']");
+            var table = htmlDoc.DocumentNode.SelectSingleNode("//*[@id='main_table_countries']");
             var countries = new List<Country>();
             foreach (var row in table.SelectSingleNode("tbody").SelectNodes("tr")) {
                 var cells = row.SelectNodes("td");

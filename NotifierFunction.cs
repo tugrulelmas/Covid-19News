@@ -48,6 +48,11 @@ namespace Notifier
                 }
 
                 if (countryItem.NewDeaths > country.NewDeaths) {
+                    if(country.TotalDeaths == 0) {
+                        messages.AppendLine($"The first death in {countryItem.Name}");
+                        continue;
+                    }
+                    
                     var deathCount = countryItem.NewDeaths - country.NewDeaths;
                     var s = deathCount > 1 ? "s" : string.Empty;
                     messages.AppendLine($"{deathCount} new death{s} in {countryItem.Name}");
